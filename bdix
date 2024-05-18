@@ -16,8 +16,6 @@ iptable_start() {
 
     # Direct connections for specific domains
 
-
-
     iptables -t nat -A BDIX -p tcp -j REDIRECT --to-ports ${PORT}
 
     iptables -t nat -A PREROUTING -i ${INTERFACE} -p tcp -j BDIX
