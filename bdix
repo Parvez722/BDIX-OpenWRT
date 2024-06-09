@@ -16,12 +16,14 @@ iptable_start() {
 
     # Direct connections for specific domains
 
+    iptables -t nat -A BDIX -d 192.168.0.0/16 -j RETURN
+
+
     iptables -t nat -A BDIX -p tcp -j REDIRECT --to-ports ${PORT}
 
     iptables -t nat -A PREROUTING -i ${INTERFACE} -p tcp -j BDIX
 
     iptables -A INPUT -i br-lan -p tcp --dport ${PORT} -j ACCEPT
-
 
     /bin/echo " done"
 }
